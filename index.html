@@ -13,6 +13,7 @@
             --bg-color: #0b0f19;
             --primary: #00f2fe;
             --secondary: #4facfe;
+            --discord: #5865F2; /* Discord Marka Rengi */
             --text-main: #ffffff;
             --text-muted: #a0aec0;
             --card-bg: rgba(255, 255, 255, 0.03);
@@ -112,8 +113,15 @@
             animation: fadeInUp 1s ease 0.3s backwards;
         }
 
+        /* Buton Grupları */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
         .btn {
-            padding: 15px 40px;
+            padding: 15px 35px;
             font-size: 16px;
             font-weight: 600;
             color: #fff;
@@ -122,14 +130,26 @@
             border-radius: 30px;
             cursor: pointer;
             transition: 0.4s ease;
-            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.2);
             text-decoration: none;
-            animation: fadeInUp 1s ease 0.6s backwards;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-discord {
+            background: var(--discord);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
         }
 
         .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(0, 242, 254, 0.5);
+            box-shadow: 0 15px 25px rgba(0, 242, 254, 0.4);
+        }
+
+        .btn-discord:hover {
+            box-shadow: 0 15px 25px rgba(88, 101, 242, 0.5);
+            background: #4752c4;
         }
 
         /* Projeler / Kartlar Bölümü */
@@ -246,18 +266,24 @@
 <body>
 
     <nav>
-        <div class="logo">Zerx.</div>
+        <div class="logo" onclick="window.location.reload()">Zerx.</div>
         <ul class="nav-links">
             <li><a href="#home">Ana Sayfa</a></li>
             <li><a href="#services">Projeler</a></li>
-            <li><a href="#contact">İletişim</a></li>
+            <li><a href="https://discord.gg/qeREmpUnJv" target="_blank">İletişim</a></li>
         </ul>
     </nav>
 
     <section class="hero" id="home">
         <h1>Zerx <span id="typewriter-text"></span><span class="cursor"></span></h1>
         <p>Geleceğin teknolojilerini, yüksek kaliteli sistemleri ve kusursuz altyapıları inşa ediyoruz. Konforlu, hızlı ve kesintisiz bir deneyim için doğru yerdesiniz.</p>
-        <a href="#services" class="btn">Sistemleri Keşfet</a>
+        
+        <div class="btn-group">
+            <a href="#services" class="btn">Sistemleri Keşfet</a>
+            <a href="https://discord.gg/qeREmpUnJv" target="_blank" class="btn btn-discord">
+                <i class="fa-brands fa-discord"></i> Discord'a Katıl
+            </a>
+        </div>
     </section>
 
     <section class="services" id="services">
@@ -285,7 +311,7 @@
         </div>
     </section>
 
-    <footer id="contact">
+    <footer>
         <p>&copy; 2026 Zerx Development. Tüm Hakları Saklıdır.</p>
     </footer>
 
@@ -310,7 +336,7 @@
             let typeSpeed = isDeleting ? 100 : 200;
 
             if(!isDeleting && charIndex === currentWord.length) {
-                typeSpeed = 2000; // Kelime bittikten sonra bekle
+                typeSpeed = 2000;
                 isDeleting = true;
             } else if(isDeleting && charIndex === 0) {
                 isDeleting = false;
@@ -321,7 +347,6 @@
             setTimeout(typeEffect, typeSpeed);
         }
 
-        // Efekti başlat
         window.onload = () => {
             setTimeout(typeEffect, 1000);
         };
